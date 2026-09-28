@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { formatEventTypeDuration, getEventTypeDurationAccessibleLabel } from "../lib/formatEventTypeDuration";
+
+import { formatEventTypeDuration } from "../lib/formatEventTypeDuration";
 
 describe("formatEventTypeDuration", () => {
   it("should format single digit minutes", () => {
@@ -42,14 +43,5 @@ describe("formatEventTypeDuration", () => {
 
   it("should handle zero minutes", () => {
     expect(formatEventTypeDuration(0)).toBe("0m");
-  });
-});
-
-describe("getEventTypeDurationAccessibleLabel", () => {
-  it("announces minutes and hours without abbreviations", () => {
-    expect(getEventTypeDurationAccessibleLabel(30)).toBe("30 minutes");
-    expect(getEventTypeDurationAccessibleLabel(60)).toBe("1 hour");
-    expect(getEventTypeDurationAccessibleLabel(90)).toBe("1 hour 30 minutes");
-    expect(getEventTypeDurationAccessibleLabel(1)).toBe("1 minute");
   });
 });

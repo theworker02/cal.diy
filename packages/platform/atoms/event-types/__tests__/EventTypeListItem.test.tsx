@@ -156,6 +156,13 @@ describe("EventTypeListItem", () => {
     expect(screen.getByText(/2h/)).toBeInTheDocument();
   });
 
+  it("should announce a zero-minute duration to screen readers", () => {
+    renderComponent({ eventType: { ...mockEventType, length: 0 } });
+
+    expect(screen.getByText("0m")).toHaveAttribute("aria-hidden", "true");
+    expect(screen.getByText("0 minutes")).toHaveClass("sr-only");
+  });
+
   it("should render event type with long title without breaking layout", () => {
     const longTitleEvent = {
       ...mockEventType,

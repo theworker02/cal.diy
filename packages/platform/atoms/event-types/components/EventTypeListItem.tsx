@@ -22,7 +22,9 @@ import type { AtomEventTypeListItem } from "../types";
 const EventTypeContent = ({ eventType }: { eventType: AtomEventTypeListItem }) => {
   const { t } = useLocale();
   const formatted = formatEventTypeDuration(eventType.length);
-  const label = getDurationAccessibleLabel(eventType.length, t);
+  // Unlike the shared helpers, this badge still renders "0m", so it needs a spoken counterpart.
+  const label =
+    eventType.length === 0 ? t("minute", { count: 0 }) : getDurationAccessibleLabel(eventType.length, t);
 
   return (
     <div>
